@@ -1,6 +1,6 @@
 /**
  * The entrypoint for the action.
  */
-const { run } = require('./bpmn-diagram-exporter')
+const { exportBpmnDiagrams } = require('./bpmn-diagram-exporter')
 
-run()
+exportBpmnDiagrams()
