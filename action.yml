@@ -1,18 +1,17 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'BPMN Exporter'
+description: 'Export BPMN-models as SVG to a target directory'
+author: 'SRF INTE'
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  sourceDirectory:
+    description:
+      'Directory where the BPMN-files are located. Extension has to be ".bpmn".'
     required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
+    default: 'src/main/resources/bpmn'
+  targetDirectory:
+    description: 'Directory where the SVG-files shall be exported'
+    required: true
+    default: 'src/main/resources/bpmn'
 
 runs:
   using: node20
