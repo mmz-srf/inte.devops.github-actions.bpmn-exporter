@@ -1,12 +1,12 @@
 const core = require('@actions/core')
 const { convertAll } = require('bpmn-to-image')
 const fs = require('fs')
-const downloadBrowser = require('puppeteer/lib/cjs/puppeteer/node/install')
+const puppeteer = require('puppeteer/lib/cjs/puppeteer/node/install')
 
 async function exportBpmnDiagrams() {
   try {
     core.info('Downloading puppeteer browser..')
-    downloadBrowser()
+    await puppeteer.downloadBrowser()
     core.info('Successfully downloaded puppeteer browser')
     const sourceDirectory = core.getInput('sourceDirectory', { required: true })
     const targetDirectory = core.getInput('targetDirectory', { required: true })
