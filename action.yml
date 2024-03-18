@@ -16,3 +16,5 @@ inputs:
 runs:
   using: node20
   main: dist/index.js
+  env:
+    PUPPETEER_BROWSER_REVISION: "121.0.6167.85"
