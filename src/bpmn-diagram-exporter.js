@@ -5,9 +5,9 @@ const downloadBrowser = require('puppeteer/install.mjs')
 
 async function exportBpmnDiagrams() {
   try {
-    core.info('Downloading puppeteer browser..')
-    downloadBrowser()
-    core.info('Successfully downloaded puppeteer browser')
+    // core.info('Downloading puppeteer browser..')
+    // downloadBrowser()
+    // core.info('Successfully downloaded puppeteer browser')
     const sourceDirectory = core.getInput('sourceDirectory', { required: true })
     const targetDirectory = core.getInput('targetDirectory', { required: true })
     for (const bpmn of fs.readdirSync(sourceDirectory)) {
@@ -20,7 +20,7 @@ async function exportBpmnDiagrams() {
       )
     }
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed(`Failed to export BPMN: ${error.message}`)
   }
 }
 
