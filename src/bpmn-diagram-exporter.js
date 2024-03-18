@@ -1,18 +1,20 @@
 const core = require('@actions/core')
 const { convertAll } = require('bpmn-to-image')
 const fs = require('fs')
-const source = 'src/main/resources/bpmn'
-const target = 'build/resources/main/bpmn'
+const downloadBrowser = require('puppeteer/install.mjs')
 
 async function exportBpmnDiagrams() {
   try {
+    core.info('Downloading puppeteer browser..')
+    downloadBrowser()
+    core.info('Successfully downloaded puppeteer browser')
     const sourceDirectory = core.getInput('sourceDirectory', { required: true })
     const targetDirectory = core.getInput('targetDirectory', { required: true })
     for (const bpmn of fs.readdirSync(sourceDirectory)) {
       core.info(
-        `Exporting BPMN at ${sourceDirectory}/${bpmn} to ${targetDirectory}`
+        `Exporting BPMN at ${sourceDirectory}/${bpmn} to ${targetDirectory}..`
       )
-      exportBpmnDiagram(sourceDirectory, targetDirectory, bpmn)
+      await exportBpmnDiagram(sourceDirectory, targetDirectory, bpmn)
       core.info(
         `Successfully exported BPMN at ${sourceDirectory}/${bpmn} to ${targetDirectory}`
       )
@@ -23,7 +25,7 @@ async function exportBpmnDiagrams() {
 }
 
 async function exportBpmnDiagram(sourceDirectory, targetDirectory, bpmn) {
-  convertAll([
+  await convertAll([
     {
       input: `${sourceDirectory}/${bpmn}`,
       outputs: [`${targetDirectory}/${basename(bpmn)}.svg`]
