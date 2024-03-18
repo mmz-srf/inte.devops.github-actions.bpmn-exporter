@@ -1,7 +1,7 @@
 const core = require('@actions/core')
 const { convertAll } = require('bpmn-to-image')
 const fs = require('fs')
-const downloadBrowser = require('puppeteer/install.mjs')
+// const downloadBrowser = require('puppeteer/install.mjs')
 
 async function exportBpmnDiagrams() {
   try {
